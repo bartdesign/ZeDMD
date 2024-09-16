@@ -99,7 +99,9 @@
 
 // To save RAM only include the driver we want to use.
 #ifdef DISPLAY_LILYGO_S3_AMOLED
-  #include "displays/LilygoS3Amoled.h"                    
+  #include "displays/LilygoS3Amoled.h" 
+#elif defined (DISPLAY_SSD1306_OLED)          
+  #include "displays/SSD1306_OLED.h"                  
 #elif defined (DISPLAY_LED_MATRIX)          
   #include "displays/LEDMatrix.h"
 #endif
@@ -1004,9 +1006,11 @@ void setup() {
 
 
 #ifdef DISPLAY_LILYGO_S3_AMOLED
-  display = new LilygoS3Amoled();  // For AMOLED display
+  display = new LilygoS3Amoled();   // For AMOLED display
 #elif defined (DISPLAY_LED_MATRIX)        
-  display = new LedMatrix();  // For LED matrix display
+  display = new LedMatrix();        // For LED matrix display
+#elif defined (DISPLAY_SSD1306_OLED) 
+  display = new SSD1306_OLED();     // For Adafruit SSD1306 128x32 OLED display (with dithering)
 #endif
 
 
@@ -1221,6 +1225,7 @@ bool WaitForCtrlChars(void) {
 }
 
 void loop() {
+  display->UpdateDisplay();
   while (MireActive) {
     rgbOrderButton->update();
     if (rgbOrderButton->pressed()) {

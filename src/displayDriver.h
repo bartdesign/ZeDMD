@@ -21,6 +21,7 @@ public:
 #if !defined(ZEDMD_WIFI)
     virtual void FillPanelUsingChangedPalette(uint8_t *pBuffer, uint8_t *palette, bool *paletteAffected) = 0; 
 #endif
+    virtual void UpdateDisplay() = 0; 
     
     virtual ~DisplayDriver() {} // Virtual destructor
 };
