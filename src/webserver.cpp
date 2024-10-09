@@ -95,6 +95,7 @@ void runWebServer() {
           rgbOrderValue.toInt();  // Convert to integer and set the RGB mode
       RefreshScreen();
       SaveRgbOrder();
+      ESP.restart();
       request->send(200, "text/plain", "RGB Order updated successfully");
     } else {
       request->send(400, "text/plain", "Missing RGB order parameter");
