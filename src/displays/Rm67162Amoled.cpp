@@ -378,7 +378,7 @@ void Rm67162Amoled::FillPanelUsingPalette(uint8_t *pBuffer, uint8_t *palette) {
       uint16_t color =
           sprite.color565(palette[pos], palette[pos + 1], palette[pos + 2]);
 
-      sprite.fillRect(x * DISPLAY_SCALE, y * DISPLAY_SCALE, DISPLAY_SCALE,
+      sprite.fillRect(x * DISPLAY_SCALE, y * DISPLAY_SCALE + DISPLAY_Y_OFFSET, DISPLAY_SCALE,
                       DISPLAY_SCALE, color);
     }
   }
@@ -400,7 +400,7 @@ void Rm67162Amoled::FillPanelUsingChangedPalette(uint8_t *pBuffer,
         uint16_t color =
             sprite.color565(palette[pos], palette[pos + 1], palette[pos + 2]);
 
-        sprite.fillRect(x * DISPLAY_SCALE, y * DISPLAY_SCALE, DISPLAY_SCALE,
+        sprite.fillRect(x * DISPLAY_SCALE, y * DISPLAY_SCALE + DISPLAY_Y_OFFSET, DISPLAY_SCALE,
                         DISPLAY_SCALE, color);
       }
     }
