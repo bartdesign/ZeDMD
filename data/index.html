@@ -240,7 +240,7 @@
                         <option value="4">G, R, B</option>
                         <option value="5">B, G, R</option>
                     </select>
-
+                    
                     <!-- Brightness Slider with Labels -->
                     <label for="brightness">Brightness:</label>
                     <div class="slider-container">
@@ -257,6 +257,8 @@
                             <!-- Options will be populated dynamically -->
                         </select>
                     </div>
+                    <br>
+                    <button onclick="applyRGBOrder()">Apply and restart</button>
                     <br>
                     <!-- Status Message -->
                     <div id="display-status" class="status-message"></div>
@@ -401,6 +403,17 @@
                 "&password=" + encodeURIComponent(password) +
                 "&port=" + encodeURIComponent(port);
             xhr.send(params);
+        }
+
+        function applyRGBOrder() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/apply_rgb", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    alert("RGB Settings applied. Device will reboot.");
+                }
+            };
+            xhr.send();
         }
 
         // Function to update the RGB order when the dropdown value changes

@@ -163,6 +163,12 @@ void runWebServer() {
     ESP.restart();  // Restart the device
   });
 
+  server.on("/apply_rgb", HTTP_POST, [](AsyncWebServerRequest *request) {
+    request->send(200, "text/plain", "");
+    delay(200);
+    ESP.restart();  // Restart the device
+  });
+
   // Handle image upload
   server.on(
       "/upload_image", HTTP_POST, [](AsyncWebServerRequest *request) {},
